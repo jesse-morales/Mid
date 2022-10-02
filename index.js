@@ -7,7 +7,7 @@ async function start(website) {
     await page.goto(website)
     //await page.screenshot({path: "cnn.png", fullPage:true})
     headerText()
-    photo()
+    headerPhoto()
     bodyText()
 
     await browser.close()
@@ -20,6 +20,13 @@ async function headerText() {
     })
     await fs.writeFile("headline.txt", headline.join("\r\n"))
 
+}
+
+async function headerPhoto() {
+   const photo = await page.evaluate(() => {
+        return document.querySelectorAll("").map(x => x.src)
+    }) 
+    await fs.writeFile("headerPhoto.png")
 }
 
 async function bodyText() {
