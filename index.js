@@ -6,9 +6,9 @@ async function start(website) {
     const page = await browser.newPage()
     await page.goto(website)
     //await page.screenshot({path: "cnn.png", fullPage:true})
-    headerText(page)
-    headerPhoto(page)
-    bodyText(page)
+    await headerText(page)
+    await headerPhoto(page)
+   // await bodyText(page)
     await browser.close()
 }
 
