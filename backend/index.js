@@ -20,11 +20,16 @@ async function headerText(page) {
 }
 
 async function headerPhoto(page) {
-    const photo = page.$$eval("#homepage1-zone-1 > div.l-container > div > div.column.zn__column--idx-0 > ul > li:nth-child(1) > article > div > div.media > a > img", (imgs) => {
+    /*const photo = page.$$eval("#homepage1-zone-1 > div.l-container > div > div.column.zn__column--idx-0 > ul > li:nth-child(1) > article > div > div.media > a > img", (imgs) => {
         return imgs.map(x => x.src)
     })
+    await fs.writeFile("photourl.txt", photo)
     const imgpage = await page.goto(photo)
-    await fs.writeFile("headerphoto.jpg", await imgpage.buffer())
+    await fs.writeFile("headerphoto.jpg", await imgpage.buffer())*/
+    const [el] = await page.$x('/html/body/div[7]/section[2]/div[2]/div/div[1]/ul/li[1]/article/div/div[1]/a/video');
+    const src = await el.getProperty('src');
+    const srcTxt = await src.jsonValue();
+    console.log({srcTxt});
 }
 
 async function bodyText(page) {
